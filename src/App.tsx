@@ -1,15 +1,25 @@
 import { useState } from 'react'
 
 import './App.css'
-
 import logoImg from './assets/Logo.png'
+
+type TipoCategoria =
+  | "Motivacional"
+  | "Reflexiva"
+  | "Bom Dia"
+
+type Categoria = {
+  readonly id: number
+  readonly tipo: TipoCategoria
+  readonly frases: readonly string[]
+}
 
 function App() {
 
-  const [frases, setFrases] = useState("");
-  const [categorias, setCategorias] = useState(0);
+  const [frases, setFrases] = useState<string>("")
+  const [categorias, setCategorias] = useState<number>(0)
 
-  const allFrases = [
+  const allFrases: Categoria[] = [
     {
       id: 1,
       tipo: "Motivacional",
@@ -60,10 +70,15 @@ function App() {
     }
   ]
 
-  function gerarFrase() {
-    let numeroAleatorio = Math.floor(Math.random() * allFrases[categorias].frases.length);
+  function gerarFrase(): void {
 
-    setFrases(allFrases[categorias].frases[numeroAleatorio])
+    const frasesCategoria = allFrases[categorias].frases
+
+    const numeroAleatorio = Math.floor(
+      Math.random() * frasesCategoria.length
+    )
+
+    setFrases(`"${frasesCategoria[numeroAleatorio]}"`)
   }
 
   return (
@@ -83,8 +98,9 @@ function App() {
             <button
               key={item.id}
               type='button'
-              className={`category-button ${categorias === index ? 'active' : ''
-                }`}
+              className={`category-button ${
+                categorias === index ? 'active' : ''
+              }`}
               onClick={() => setCategorias(index)}
             >
               {item.tipo}
@@ -92,11 +108,17 @@ function App() {
           ))}
         </section>
 
-        <button type='button' className='button-frase' onClick={gerarFrase}>
+        <button
+          type='button'
+          className='button-frase'
+          onClick={gerarFrase}
+        >
           Gerar frase
         </button>
 
-        {frases !== '' && <p className='texto-frase'>{frases}</p>}
+        {frases !== '' && (
+          <p className='texto-frase'>{frases}</p>
+        )}
       </div>
     </div>
   )
