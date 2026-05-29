@@ -21,8 +21,7 @@
     object-fit: contain;
 
     filter:
-        drop-shadow(0 0 8px rgba(255, 255, 255, 0.15))
-        drop-shadow(0 10px 25px rgba(236, 72, 153, 0.35));
+        drop-shadow(0 0 8px rgba(255, 255, 255, 0.15)) drop-shadow(0 10px 25px rgba(236, 72, 153, 0.35));
 
     transition: 0.4s ease;
     cursor: pointer;
@@ -95,7 +94,6 @@
     cursor: pointer;
 
     transition: all 0.3s ease;
-
 }
 
 .category-button:hover {
@@ -110,9 +108,9 @@
 }
 
 /* botão ativo */
-
-.category-button:focus {
-    outline: none;
+.category-button.active {
+    border-width: 2px;
+    border-color: #ec4899;
 
     background: linear-gradient(135deg, #38bdf8, #ec4899);
 
@@ -120,6 +118,10 @@
 
     box-shadow:
         0 0 0 4px rgba(236, 72, 153, 0.25);
+}
+
+.category-button:focus {
+    outline: none;
 }
 
 /* ===== BOTÃO GERAR ===== */
@@ -212,4 +214,3 @@
         padding: 20px;
     }
 }
-
