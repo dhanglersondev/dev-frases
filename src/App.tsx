@@ -60,6 +60,12 @@ function App() {
     }
   ]
 
+  function gerarFrase() {
+    let numeroAleatorio = Math.floor(Math.random() * allFrases[categorias].frases.length);
+
+    setFrases(allFrases[categorias].frases[numeroAleatorio])
+  }
+
   return (
     <div className='container'>
       <img
@@ -86,7 +92,7 @@ function App() {
           ))}
         </section>
 
-        <button type='button' className='button-frase'>
+        <button type='button' className='button-frase' onClick={gerarFrase}>
           Gerar frase
         </button>
 
